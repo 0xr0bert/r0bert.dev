@@ -1,0 +1,4 @@
+baseURL = 'https://r0bert.dev'
+languageCode = 'en-GB'
+title = 'Robert Greener'
+theme = "papermod"
