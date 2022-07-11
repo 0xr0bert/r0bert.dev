@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Robert Greener, Daniel Lewis, Jon Reades, Simon Miles, and Steven Cummins">
+  <title>Incorporating social norms into a configurable agent-based model of the decision to perform commuting behaviour</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/sky.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Incorporating social norms into a configurable
+agent-based model of the decision to perform commuting behaviour</h1>
+  <p class="author">Robert Greener, Daniel Lewis, Jon Reades, Simon
+Miles, and Steven Cummins</p>
+  <p class="date">25th July 2022</p>
+</section>
+
+<section>
+<section id="background" class="title-slide slide level1">
+<h1>Background</h1>
+
+</section>
+<section id="background-1" class="slide level2">
+<h2>Background</h2>
+<ul>
+<li>There is a growing commitment in the UK and worldwide to rebalancing
+the travel system, so that more journeys are made using more active
+modes, such as walking and cycling.</li>
+<li>Walking and cycling are good for people’s physical and mental
+health, but also, they reduce dependency on motorized transport,
+particularly cars, which will reduce noise and air pollution, reduce the
+risk of road traffic injury, and help cardiovascular disease and
+obesity.</li>
+<li>Therefore, there are significant population health gains to be made
+by moving people into more active modes of travel.</li>
+<li>Social norms, as well as system-based approaches, are understudied
+in public health. However, these could be key to understanding what
+makes an intervention successful.</li>
+<li>By norms, we refer to emergent social norms, i.e., behaviour which
+becomes prevalent through interaction, rather than prescriptive norms
+(obligation, prohibition, and permission)</li>
+</ul>
+</section>
+<section id="model-aims" class="slide level2">
+<h2>Model aims</h2>
+<ul>
+<li>The aim is to build a configurable agent-based model of the
+<em>decision</em> to perform commuting behaviour.</li>
+<li>This means that the actual process of commuting is not modelled – we
+don’t model how traffic flows through cities.</li>
+<li>We look at the higher-level mode-choice decision rather than the act
+of travel.</li>
+<li>We aim to include the effect of the actions of peers and neighbours,
+subculture, habit, weather, bicycle ownership, car ownership,
+environmental supportiveness, and congestion on the decision to travel
+by walking, cycling, driving, or public transport.</li>
+<li>All the parameters are configurable allowing for other users to
+calibrate the model to their own area of interest.</li>
+</ul>
+</section></section>
+<section>
+<section id="methods" class="title-slide slide level1">
+<h1>Methods</h1>
+
+</section>
+<section id="some-assumptions" class="slide level2">
+<h2>Some assumptions</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>4 options at every time step: walk, cycle, public transport, or
+drive.</li>
+<li>Modelled loosely on Waltham Forest, a North Eastern London
+Borough.</li>
+<li>Used a microsimulation approach to ensure wards (neighbourhoods)
+matched real life on things such as car ownership and commute distance.
+This used data from the UK Household Longitudinal Survey <span
+class="citation"
+data-cites="universityofessexUnderstandingSocietyWaves2020">(University
+of Essex et al. 2020)</span> and 2011 Census population data <span
+class="citation"
+data-cites="officefornationalstatistics2011CensusAggregate2017">(Office
+for National Statistics, National Records of Scotland, and Northern
+Ireland Statistics and Research Agency 2017)</span>.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/neighbourhood-grid.svg"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section>
+<section id="environmental-assumptions" class="slide level2">
+<h2>Environmental assumptions</h2>
+<ul>
+<li>Each agent lives in a neighbourhood.
+<ul>
+<li>Neighbourhoods have a <em>supportiveness</em> for each transport
+mode.</li>
+<li>Neighbourhoods also have a physical <em>capacity</em> for each
+transport mode, which once passed results in <em>congestion</em>, a
+negative influence.</li>
+<li>There is variation in neighbourhood supportiveness and capacity
+between neighbourhoods.</li>
+</ul></li>
+<li>Supportiveness is a <em>composite</em> configurable parameter.</li>
+<li>We can change the score to reflect positive or negative changes in
+the supportiveness of the environment.
+<ul>
+<li>Environmental changes are <em>low-frequency</em>, potentially
+working through norms.</li>
+</ul></li>
+<li>We also allow for weather as a factor affecting daily mode choice.
+<ul>
+<li>Weather changes are <em>high-frequency</em>, imposing mode
+choice.</li>
+</ul></li>
+</ul>
+</section>
+<section id="agent-assumptions" class="slide level2">
+<h2>Agent assumptions</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>Agents’ norms arise through a combination of:
+<ul>
+<li>their friends;</li>
+<li>their neighbours; and</li>
+<li>their mobility culture</li>
+</ul></li>
+<li>A mobility culture could be seen as the process of creation and
+maintenance of allegiance to particular forms of mobility.</li>
+<li>The main task of an agent is to commute to work with a travel
+mode.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/agent-belongings.svg"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section>
+<section id="model-initialization" class="slide level2">
+<h2>Model initialization</h2>
+<ul>
+<li>Agents are created and assigned a range of characteristics:
+<ul>
+<li>a commute to fulfil (local, city, or beyond);</li>
+<li>a neighbourhood, social network, and mobility culture; and</li>
+<li>some psychological variables:
+<ul>
+<li>suggestibility to friends and neighbours;</li>
+<li>adherence to norms;</li>
+<li>inertia/resistance to change; and</li>
+<li>weather sensitivity.</li>
+</ul></li>
+</ul></li>
+<li>Neighbourhoods are assigned a supportiveness and capacity.</li>
+</ul>
+</section>
+<section id="a-model-run" class="slide level2">
+<h2>A model run</h2>
+<ul>
+<li>Each agent goes to work every weekday.</li>
+<li>Each weekday, each agent calculates a <em>budget</em> of how much
+they are willing to commute by a given mode (norm + habit + congestion).
+This is then ranked.</li>
+<li>They also calculate a <em>cost</em> for each each mode (distance +
+environmental supportiveness + weather). This is ranked in reverse
+(higher cost = lower ranked cost).</li>
+<li>Max of budget rank + reverse cost rank.</li>
+</ul>
+</section></section>
+<section>
+<section id="experimentation" class="title-slide slide level1">
+<h1>Experimentation</h1>
+
+</section>
+<section id="modelling-car-free-days" class="slide level2">
+<h2>Modelling car-free days</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>In order to demonstrate the utility of the model, we implemented an
+intervention where cars were banned on Wednesdays.</li>
+<li>After year 1, cars were banned. The simulation was run for 4 more
+years.</li>
+<li>This introduced greater instability into the journeys taken, but
+significantly greater number of active commutes.</li>
+<li>In the control scenario, over 200 runs, the odds of an active
+journey were 0.091 (89% HPDI: [0.091, 0.091]). The odds of an active
+journey were 77.7% (89% HPDI: [77.7%, 77.7%]) greater in the car-free
+days scenario.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/cfd.png"
+data-caption="14 day moving average of active commutes"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="conclusion-and-end" class="title-slide slide level1">
+<h1>Conclusion and end</h1>
+
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li>Thinking about norms and habits are key.</li>
+<li>In our sample intervention, habits and norms allow us to destabilize
+the convention of commuting by car. We disrupt this convention by
+preventing the effect of habit (on car-free days); this then leads to a
+change in norm.</li>
+<li>By allowing many runs of the simulation, precise estimates of the
+effects within the model can be attained.</li>
+<li>Further work could extend our model by calibrating the built
+environment data to see how the environment interacts with social
+norms.</li>
+<li>The model is available under a permissive license at <a
+href="https://gitlab.com/ragreener1/Motivate"
+class="uri">https://gitlab.com/ragreener1/Motivate</a>. The specific
+version used is available at <a href="https://doi.org/hvpd"
+class="uri">https://doi.org/hvpd</a>. It is programmed in Rust, a modern
+high-performance systems programming language.</li>
+<li>The model is easily configurable using open standards (YAML) to
+define its parametrization.</li>
+</ul>
+</section>
+<section id="end" class="slide level2">
+<h2>End</h2>
+<ul>
+<li>Full paper available in the workshop proceedings.</li>
+<li>Source code available under a permissive free software license (<a
+href="https://doi.org/hvpd" class="uri">https://doi.org/hvpd</a>).</li>
+<li>This research was funded by KCL–LSHTM seed funding. Robert Greener
+is supported by a Medical Research Council Studentship [grant number:
+MR/N0136638/1]. Steven Cummins is funded by Health Data Research UK
+(HDR-UK). HDR-UK is an initiative funded by the UK Research and
+Innovation, Department of Health and Social Care (England) and the
+devolved administrations, and leading medical research charities.</li>
+<li>Any questions?</li>
+</ul>
+</section>
+<section id="references" class="slide level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-officefornationalstatistics2011CensusAggregate2017"
+class="csl-entry" role="doc-biblioentry">
+Office for National Statistics, National Records of Scotland, and
+Northern Ireland Statistics and Research Agency. 2017. <span>“2011
+<span>Census</span> Aggregate Data.”</span> <span>UK Data
+Service</span>. <a
+href="https://doi.org/10.5257/census/aggregate-2011-2">https://doi.org/10.5257/census/aggregate-2011-2</a>.
+</div>
+<div id="ref-universityofessexUnderstandingSocietyWaves2020"
+class="csl-entry" role="doc-biblioentry">
+University of Essex, Institute for Social and Economic Research, NatCen
+Social Research, and Kantar Public. 2020. <span>“Understanding
+<span>Society</span>: <span>Waves</span> 1, 2009 and <span>Harmonised
+BHPS</span>: <span>Waves</span> 1, 1991.”</span> {{SN}}. <span>UK Data
+Service</span>. <a
+href="https://doi.org/10.5255/UKDA-SN-6614-14">https://doi.org/10.5255/UKDA-SN-6614-14</a>.
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: "90%",
+
+        height: "100%",
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

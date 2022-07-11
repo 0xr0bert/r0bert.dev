@@ -1,3 +1,6 @@
+[submodule "static/att-22/reveal.js"]
+	path = static/att-22/reveal.js
+	url = https://github.com/hakimel/reveal.js.git
 [submodule "themes/papermod"]
 	path = themes/papermod
 	url = https://github.com/adityatelange/hugo-PaperMod.git
