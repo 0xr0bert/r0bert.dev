@@ -4,3 +4,9 @@ title = 'Robert Greener'
 theme = "papermod"
 [Params]
   hideFooter = true
+[menu]
+[[menu.main]]
+  identifier = "git"
+  name = "git"
+  url = "https://git.r0bert.dev"
+  weight = 100
