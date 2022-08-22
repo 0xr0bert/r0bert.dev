@@ -2,8 +2,10 @@ baseURL = 'https://r0bert.dev'
 languageCode = 'en-GB'
 title = 'Robert Greener'
 theme = "papermod"
+disqusShortname = 'r0bert-dev'
 [Params]
   hideFooter = true
+  comments = true
 [menu]
 [[menu.main]]
   identifier = "git"
