@@ -3,7 +3,7 @@ packages:
   - aws-cli
   - hugo
 sources:
-  - https://hg.sr.ht/~ragreener1/r0bert-dev
+  hg+https://hg.sr.ht/~ragreener1/r0bert-dev
 secrets:
   - 8568729e-24ad-40fa-aa2e-23af1c97e20a
 tasks:
