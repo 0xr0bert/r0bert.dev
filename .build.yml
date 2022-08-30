@@ -8,10 +8,10 @@ secrets:
   - 8568729e-24ad-40fa-aa2e-23af1c97e20a
 tasks:
   - build: |
-    cd r0bert-dev
-    hugo
+      cd r0bert-dev
+      hugo
   - deploy: |
-    cd r0bert-dev
-    aws s3 sync public/ s3://r0bert.dev/
+      cd r0bert-dev
+      aws s3 sync public/ s3://r0bert.dev/
   - invalidate-cache:
-    aws cloudfront create-invalidation --distribution-id=E1MBBKO01SS5O9 --paths /
+      aws cloudfront create-invalidation --distribution-id=E1MBBKO01SS5O9 --paths /
