@@ -3,7 +3,7 @@ packages:
   - aws-cli
   - hugo
 sources:
-  hg+https://hg.sr.ht/~ragreener1/r0bert-dev
+  - hg+https://hg.sr.ht/~ragreener1/r0bert-dev
 secrets:
   - 8568729e-24ad-40fa-aa2e-23af1c97e20a
   - 8e82d65d-25cc-4ccf-9802-cbd6b48078bf
@@ -14,5 +14,5 @@ tasks:
   - deploy: |
       cd r0bert-dev
       aws s3 sync public/ s3://r0bert.dev/
-  - invalidate-cache:
+  - invalidate-cache: |
       aws cloudfront create-invalidation --distribution-id=E1MBBKO01SS5O9 --paths /
