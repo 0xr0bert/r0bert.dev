@@ -39,5 +39,8 @@ If you want to contact me about something research related, please use my LSHTM 
 If you want to contact me about anything else, contact me at [me@r0bert.dev](mailto:me@r0bert.dev).
 I also accept GPG encrypted emails -- use my public key: [D40F293BE111CA808A419548E5EB8515F16A04D7](/gpg.asc).
 
+For anything about the various software projects I work on, check the README.md / CONTRIBUTING.md to see if there's anything there (e.g., a mailing list).
+If not feel free to email me, as described above.
+
 You can also contact me on twitter [@ragreener1](https://twitter.com/ragreener1).
 
