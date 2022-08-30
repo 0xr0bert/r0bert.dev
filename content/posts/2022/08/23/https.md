@@ -7,7 +7,7 @@ tags: ["security"]
 categories: ["security"]
 ---
 
-[Recently]({{< ref "/posts/2022-08-20-manjaro.md" >}}), I spoke about how it was completely incompetent for forgetting to renew its SSL certificate for a fifth time.
+[Recently]({{< ref "/posts/2022/08/20/manjaro.md" >}}), I spoke about how it was completely incompetent for forgetting to renew its SSL certificate for a fifth time.
 This got me thinking about HTTPS (SSL-encrypted HTTP traffic).
 HTTPS should be compulsory and browsers should refuse to serve non-encrypted websites to users.
 
