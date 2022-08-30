@@ -15,4 +15,4 @@ tasks:
       cd r0bert-dev
       aws s3 sync public/ s3://r0bert.dev/
   - invalidate-cache: |
-      aws cloudfront create-invalidation --distribution-id=E1MBBKO01SS5O9 --paths /
+      aws cloudfront create-invalidation --distribution-id=E1MBBKO01SS5O9 --paths /*
