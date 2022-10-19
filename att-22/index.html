@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Robert Greener1,2, Daniel Lewis1, Jon Reades3, Simon Miles2, and Steven Cummins1">
+  <title>MOTIVATE: Incorporating social norms into a configurable ABM of the decision to perform commuting behaviour</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/dist/theme/sky.css" id="theme">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">MOTIVATE: Incorporating social norms into a
+configurable ABM of the decision to perform commuting behaviour</h1>
+  <p class="author">Robert Greener<sup>1,2</sup>, Daniel
+Lewis<sup>1</sup>, Jon Reades<sup>3</sup>, Simon Miles<sup>2</sup>, and
+Steven Cummins<sup>1</sup></p>
+  <p class="institute"><sup>1</sup> London School of Hygiene and
+Tropical Medicine</p>
+  <p class="institute"><sup>2</sup> King’s College London</p>
+  <p class="institute"><sup>3</sup> University College London</p>
+  <p class="date">25th July 2022</p>
+</section>
+
+<section id="background" class="slide level2">
+<h2>Background</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li><p>Active travel policies frame walking &amp; cycling as ‘good’,
+cars as ‘bad’!</p></li>
+<li><p>Perceptions of acceptable commute method vary by groups.</p></li>
+<li><p>Social norms may explain this difference.</p></li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/congestion-charge-telegraph.png"
+style="width:100.0%" /> Daily Telegraph, 30th June 2022.</p>
+</div>
+</div>
+</section>
+<section id="question-model-overview" class="slide level2">
+<h2>Question &amp; model overview</h2>
+<ul>
+<li><strong>Research question</strong>: What interventions may be
+successful at increasing active travel?</li>
+<li>Need to better understand the decision-making process for
+commuters!</li>
+<li>Not about traffic flow!</li>
+<li>Incorporate:
+<ul>
+<li>peer/neighbour effects;</li>
+<li>choice/habit; and</li>
+<li>access and support.</li>
+</ul></li>
+<li>Fully configurable model to allow for parameter space
+exploration/adaptation.</li>
+</ul>
+</section>
+<section>
+<section id="methods" class="title-slide slide level1">
+<h1>Methods</h1>
+
+</section>
+<section id="waltham-forest-london" class="slide level2">
+<h2>Waltham Forest, London</h2>
+<p><img data-src="images/LondonWaltham.svg" style="height:80.0%" /></p>
+<p>Waltham Forest by Morwen and Richtom80 (<a
+href="https://bit.ly/3yYFzLF"
+class="uri">https://bit.ly/3yYFzLF</a>)</p>
+</section>
+<section id="some-assumptions" class="slide level2">
+<h2>Some assumptions</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li>4 options at every time step: walk, cycle, public transport, or
+drive.</li>
+<li>Modelled loosely on Waltham Forest, a North Eastern London
+Borough.</li>
+<li>Used a microsimulation approach to ensure wards (neighbourhoods)
+matched real life on things such as car ownership and commute distance.
+This used data from the UK Household Longitudinal Survey and 2011 Census
+population data.</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/neighbourhood-grid.svg"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section>
+<section id="environmental-assumptions" class="slide level2">
+<h2>Environmental assumptions</h2>
+<p><img data-src="images/environment.svg" style="width:70.0%" /></p>
+</section>
+<section id="agent-assumptions" class="slide level2">
+<h2>Agent assumptions</h2>
+<p><img data-src="images/agent-belongings.svg"
+style="width:50.0%" /></p>
+</section>
+<section id="model-initialization" class="slide level2">
+<h2>Model initialization</h2>
+<ul>
+<li>Agents are created and assigned a range of characteristics:
+<ul>
+<li>a commute to fulfil (local, city, or beyond);</li>
+<li>a neighbourhood, social network, and mobility culture; and</li>
+<li>some psychological variables:
+<ul>
+<li>suggestibility to friends and neighbours;</li>
+<li>adherence to norms;</li>
+<li>inertia/resistance to change; and</li>
+<li>weather sensitivity.</li>
+</ul></li>
+</ul></li>
+<li>Neighbourhoods are assigned a supportiveness and capacity.</li>
+</ul>
+</section>
+<section id="a-model-run" class="slide level2">
+<h2>A model run</h2>
+<ul>
+<li>Each agent goes to work every weekday.</li>
+<li>Each weekday, each agent calculates a <em>budget</em> of how much
+they are willing to commute by a given mode (norm + habit + congestion).
+This is then ranked.</li>
+<li>They also calculate a <em>cost</em> for each mode (distance +
+environmental supportiveness + weather). This is ranked in reverse
+(higher cost = lower ranked cost).</li>
+<li>Max of budget rank + reverse cost rank.</li>
+</ul>
+</section></section>
+<section>
+<section id="experimentation" class="title-slide slide level1">
+<h1>Experimentation</h1>
+
+</section>
+<section id="modelling-car-free-days" class="slide level2">
+<h2>Modelling car-free days</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<ul>
+<li><strong>Experiment</strong>: After year 1, cars were banned on
+Wednesdays. The simulation was run for 4 more years.</li>
+<li>200 runs.</li>
+<li><strong>Result</strong>: More instability, but more active
+commutes.</li>
+<li>In the control, for every inactive journey, there were 0.091 active
+journeys (the odds) (89% HPDI: [0.091, 0.091]).</li>
+<li>The odds were 77.7% greater in car-free days scenario (89% HPDI:
+[77.7%, 77.7%]).</li>
+</ul>
+</div><div class="column" style="width:45%;">
+<p><img data-src="images/cfd.png"
+data-caption="14 day moving average of active commutes"
+style="width:80.0%" /></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<h3 id="summary">Summary</h3>
+<ul>
+<li>Thinking about norms and habits are key to understanding the
+decision to commute.</li>
+<li>In our sample intervention, habits and norms allow us to destabilize
+the convention of commuting by car. We disrupt this convention by
+preventing the effect of habit (on car-free days); this then leads to a
+change in norm.</li>
+<li>Useful as a simulator of potential policies that may affect
+commuting-related norms.</li>
+</ul>
+<h3 id="limitations-future-work">Limitations / Future work</h3>
+<ul>
+<li>The model currently does not use calibrated build environment data
+=&gt; extend it!</li>
+<li>Personal journeys not considered.</li>
+<li>Process of changing bike / car ownership.</li>
+</ul>
+</section>
+<section id="any-questions" class="slide level2">
+<h2>Any questions?</h2>
+<ul>
+<li>Full paper available in the workshop proceedings.</li>
+<li>The model is available under a permissive license at <a
+href="https://gitlab.com/ragreener1/Motivate"
+class="uri">https://gitlab.com/ragreener1/Motivate</a>. The specific
+version used is available at <a href="https://doi.org/hvpd"
+class="uri">https://doi.org/hvpd</a>.</li>
+<li>The model is easily configurable using open standards (YAML) to
+define its parametrization.</li>
+</ul>
+<h3 id="acknowledgements">Acknowledgements</h3>
+<div class="small">
+<ul>
+<li>This research was funded by KCL–LSHTM seed funding. Robert Greener
+is supported by a Medical Research Council Studentship [grant number:
+MR/N0136638/1]. Steven Cummins is funded by Health Data Research UK
+(HDR-UK). HDR-UK is an initiative funded by the UK Research and
+Innovation, Department of Health and Social Care (England) and the
+devolved administrations, and leading medical research charities.</li>
+</ul>
+</div>
+<p><img data-src="images/LSHTM-logo-bw.jpg" style="width:20.0%" /> <img
+data-src="images/kcl.svg" style="width:13.0%" /> <img
+data-src="images/Medical_Research_Council_logo.svg.png"
+style="width:33.0%" /> <img data-src="images/philab.png"
+style="width:20.0%" /></p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/search/search.js"></script>
+  <script src="reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
